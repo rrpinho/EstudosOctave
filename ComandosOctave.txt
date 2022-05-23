@@ -1,0 +1,30 @@
+clc; => Limpa a tela de trabalho
+clear all; =: Limpa as variáveis criadas
+close all; => Fecha as telas gráficas ou de figuras criadas
+
+% => comentários
+
+Vetor:
+    v = [1 2 3 4 5] => Vetor de linhas, separando por espaços
+    v = [1;2;3;4;5] => Vetor de colunas, separando por ponto e virgula
+
+Variáveis de função:
+    y = @(x) x+2 => y(x) = x + 2
+    y = @(t,x) x*t+2 => y(t,x) = x*t+2
+    y = @(t,x) [x*t+2; x^t] => y(t,x) = x*t+2
+                                y(t,x) = x^t
+
+Comandos:
+    [var1, var2] = ode45(função, tempo simulado, condição inicial) =>  Resolver problemas de valor inicial (PVI)
+    s = tf('s') => Cria uma função de transferência
+    [var1, var2] = step(função, tempo simulado) => Aplica um degrau unitário
+    [var1, var2] = impulse(função, tempo simulado) => Aplica um impulso. É mais geral que o step
+            impulse(função / s, tempo simulado) = step(função, tempo simulado) => Degrau
+            impulse(função / (s^2+1), tempo simulado) => senoide
+            impulse(função / (s/s), tempo simulado) => rampa
+
+Prompt:
+    var.num => Retorna os índices do numerador (Retorna uma matriz)
+    var.den => Retorna os índices do denominador (Retorna uma matriz)
+    roots(var.num{1,1}) => Encontra as raízes dos índices da variável
+    [c,p,r] = residue(G.num{1},G.den{1}) => Calcula as frações parciais (para G com múltiplos polos)
